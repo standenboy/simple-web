@@ -1,0 +1,66 @@
+#!/bin/bash
+
+site=$(cat ~/.config/web/websites | dmenu)
+
+
+
+if [ -s $site ]
+	then
+	echo no input
+	else
+	if [ $site == 'youtube.com' ]
+		then
+		site=$(cat ~/.config/web/youtube | dmenu)
+		echo $site
+		if [ $site == 'bugswriter' ]
+			then
+			curl -s https://vid.puffyan.us/channel/UCngn7SVujlvskHRvRKc1cTw | grep -Eo "watch\?v=.{11}" > ~/.cache/web/oldlinks
+			sed -n '0~3p' cat ~/.cache/web/oldlinks > ~/.cache/web/newlinks
+			video=$(cat ~/.cache/web/newlinks | dmenu)
+			clear
+			mpv https://www.youtube.com/$video
+			
+		elif [ $site == 'mental-outlaw' ]
+			then
+			curl -s https://vid.puffyan.us/channel/UC7YOGHUfC1Tb6E4pudI9STA | grep -Eo "watch\?v=.{11}" > ~/.cache/web/oldlinks
+			sed -n '0~3p' cat ~/.cache/web/oldlinks > ~/.cache/web/newlinks
+			video=$(cat ~/.cache/web/newlinks | dmenu)
+			clear
+			mpv https://www.youtube.com/$video
+		elif [ $site == 'the-linux-cast' ]
+			then
+			curl -s https://vid.puffyan.us/channel/UCylGUf9BvQooEFjgdNudoQg | grep -Eo "watch\?v=.{11}" > ~/.cache/web/oldlinks
+			sed -n '0~3p' cat ~/.cache/web/oldlinks > ~/.cache/web/newlinks
+			video=$(cat ~/.cache/web/newlinks | dmenu)
+			clear
+			mpv https://www.youtube.com/$video
+		elif [ $site == 'martincitopants' ]
+			then
+			curl -s https://vid.puffyan.us/channel/UCcnci5vbpLJ-rh_V9yXwawg | grep -Eo "watch\?v=.{11}" > ~/.cache/web/oldlinks
+			sed -n '0~3p' cat ~/.cache/web/oldlinks > ~/.cache/web/newlinks
+			video=$(cat ~/.cache/web/newlinks | dmenu)
+			clear
+			mpv https://www.youtube.com/$video
+		elif [ $site == 'trupen' ]
+			then
+			curl -s https://vid.puffyan.us/channel/UC6kQdIS4TJwUURNu0NPoVgw | grep -Eo "watch\?v=.{11}" > ~/.cache/web/oldlinks
+			sed -n '0~3p' cat ~/.cache/web/oldlinks > ~/.cache/web/newlinks
+			video=$(cat ~/.cache/web/newlinks | dmenu)
+			clear
+			mpv https://www.youtube.com/$video
+
+		fi
+	elif [ $site == 'ani-cli' ]
+		then
+		kitty ani-cli
+	
+
+
+	else
+		firefox-bin $site
+	fi
+
+fi
+
+
+
